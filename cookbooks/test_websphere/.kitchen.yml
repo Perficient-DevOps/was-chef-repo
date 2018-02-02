@@ -1,0 +1,30 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: centos-74-was855-chef13
+    driver:
+      box: centos-74-was855-chef13
+      box_url: http://shepherd/vmimages/boxes/centos-74-was855-chef13.box
+      customize:
+        memory: 4096
+
+suites:
+  - name: default
+    run_list:
+      - recipe[test_websphere::create_profile]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
