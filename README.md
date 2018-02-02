@@ -1,56 +1,24 @@
-# Data Bags
+# Overview
 
-This directory contains directories of the various data bags you create for your infrastructure. Each subdirectory corresponds to a data bag on the Chef Server, and contains JSON files of the items that go in the bag.
+Every Chef installation needs a Chef Repository. This is the place where cookbooks, roles, config files and other artifacts for managing systems with Chef will live. We strongly recommend storing this repository in a version control system such as Git and treat it like source code.
 
-For example, in this directory you'll find an example data bag directory called `example`, which contains an item definition called `example_item.json`
+While we prefer Git, and make this repository available via GitHub, you are welcome to download a tar or zip archive and use your favorite version control system to manage the code.
 
-Before uploading this item to the server, we must first create the data bag on the Chef Server.
+# Repository Directories
 
-    knife data bag create example
+This repository contains several directories, and each directory contains a README file that describes what it is for in greater detail, and how to use it for managing your systems with Chef.
 
-Then we can upload the items in the data bag's directory to the Chef Server.
+- `cookbooks/` - Cookbooks you download or create.
+- `data_bags/` - Store data bags and items in .json in the repository.
+- `roles/` - Store roles in .rb or .json in the repository.
+- `environments/` - Store environments in .rb or .json in the repository.
 
-    knife data bag from file example example_item.json
+# Configuration
 
-For more information on data bags, see the Chef wiki page:
+The config file, `.chef/knife.rb` is a repository specific configuration file for knife. If you're using the Chef Platform, you can download one for your organization from the management console. If you're using the Open Source Chef Server, you can generate a new one with `knife configure`. For more information about configuring Knife, see the Knife documentation.
 
-https://docs.chef.io/data_bags.html
+<https://docs.chef.io/knife.html>
 
-# Encrypted Data Bags
+# Next Steps
 
-Encrypted data bags allow you to encrypt the contents of your data bags. The content of attributes will no longer be searchable. To use encrypted data bags, first you must have or create a secret key.
-
-    openssl rand -base64 512 > secret_key
-
-You may use this secret_key to add items to a data bag during a create.
-
-    knife data bag create --secret-file secret_key passwords mysql
-
-You may also use it when adding ITEMs from files,
-
-    knife data bag create passwords
-    knife data bag from file passwords data_bags/passwords/mysql.json --secret-file secret_key
-
-The JSON for the ITEM must contain a key named "id" with a value equal to "ITEM" and the contents will be encrypted when uploaded. For example,
-
-    {
-      "id": "mysql",
-      "password": "abc123"
-    }
-
-Without the secret_key, the contents are encrypted.
-
-    knife data bag show passwords mysql
-    id:        mysql
-    password:  2I0XUUve1TXEojEyeGsjhw==
-
-Use the secret_key to view the contents.
-
-    knife data bag show passwords mysql --secret-file secret_key
-    id:        mysql
-    password:  abc123
-
-
-For more information on encrypted data bags, see the Chef wiki page:
-
-https://docs.chef.io/data_bags.html
+Read the README file in each of the subdirectories for more information about what goes in those directories.
