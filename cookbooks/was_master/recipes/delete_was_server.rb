@@ -9,11 +9,11 @@ template temp_script do
   source 'delete-server.py.erb'
 
   variables({
-    :node_name => node['bpm']['node_name'],
-    :server_name => node['bpm']['server_name']
+    :node_name => node['was']['node_name'],
+    :server_name => node['was']['server_name']
     })
 end
 
 execute "Run Jython" do
-  command "/opt/IBM/WAS8.5.5/bin/wsadmin.sh -profileName Chef2Dmgr -lang jython -f #{temp_script}"
+  command "/opt/IBM/WAS8.5.5/bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script}"
 end

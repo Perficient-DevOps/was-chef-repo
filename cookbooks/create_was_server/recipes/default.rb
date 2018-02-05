@@ -8,8 +8,8 @@ temp_script= File.join( Chef::Config[:file_cache_path], 'create-server.py' )
 template temp_script do
   source 'create-server.py.erb'
   variables({
-    :node_name => node['bpm']['node_name'],
-    :server_name => node['bpm']['server_name']
+    :node_name => node['was']['node_name'],
+    :server_name => node['was']['server_name']
     })
 end
 
