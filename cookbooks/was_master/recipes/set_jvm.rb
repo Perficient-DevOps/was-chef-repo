@@ -19,5 +19,5 @@ template temp_script do
 
   execute "Update #{node['was']['server_name'] } JVM settings via wsadmin" do
    # command "#{ node['was']['profile_path'] }/bin/wsadmin.sh -lang jython -port #{ node['was']['soap_port'] } -username #{ node['was']['was_user'] } -password '#{ node['was']['was_pass'] }' -f #{temp_script}"
-    command "#{ node['was']['profile_path'] }/bin/wsadmin.sh -lang jython -port #{ node['was']['soap_port'] } -f #{temp_script}"
+    command "#{ node['was']['profile_path'] }/bin/wsadmin.sh -lang jython -port #{ node['was']['soap_port'] } -f #{temp_script} -user #{node['was']['was_user']} -password #{node['was']['was_user']}"
   end

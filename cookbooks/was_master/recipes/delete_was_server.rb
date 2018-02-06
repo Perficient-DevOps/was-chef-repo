@@ -15,5 +15,5 @@ template temp_script do
 end
 
 execute "Run Jython" do
-  command "#{node['was']['install_home']}bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script}"
+  command "#{node['was']['install_home']}bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script} -user #{node['was']['was_user']} -password #{node['was']['was_user']}"
 end
