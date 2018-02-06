@@ -15,5 +15,5 @@ template temp_script do
 end
 
 execute "Run Jython" do
-  command "/opt/IBM/WAS8.5.5/bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script}"
+  command "#{node['was']['install_home']}bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script}"
 end
