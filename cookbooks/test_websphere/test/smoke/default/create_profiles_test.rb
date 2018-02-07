@@ -1,6 +1,6 @@
 # # encoding: utf-8
 
-# Inspec test for recipe test_websphere::install
+# Inspec test for recipe test_websphere::create_profiles
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
@@ -9,6 +9,11 @@
 describe file( '/opt/IBM/WebSphere/AppServer/profiles/Dmgr001' ) do
  it { should be_directory }
  it { should be_owned_by 'wasadmin' }
+end
+
+describe processes( Regexp.new('^/opt/IBM/WebSphere/AppServer/java/bin/java .* dmgr$' ) ) do
+  its('users') { should include 'wasadmin' }
+  its('commands') { should match /dmgr/ }
 end
 
 describe port(9043) do
@@ -21,7 +26,7 @@ describe port(9060) do
   its('processes') {should include 'java'}
 end
 
-# Check Dmgr Profile
+# Check AppSrv Profile
 describe file( '/opt/IBM/WebSphere/AppServer/profiles/AppSrv01' ) do
  it { should be_directory }
  it { should be_owned_by 'wasadmin' }

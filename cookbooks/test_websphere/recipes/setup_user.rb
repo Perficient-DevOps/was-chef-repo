@@ -20,9 +20,6 @@ group node[:test_websphere][:run_group] do
   append true
 end
 
-# Ensure that directory ownership is correct
-directory node[:test_websphere][:install_path] do
-  action :create
-  owner node[:test_websphere][:run_user]
-  owner node[:test_websphere][:run_group]
-end
+# Update users ulimits
+# /etc/security/limits.conf
+#

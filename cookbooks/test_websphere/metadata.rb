@@ -18,3 +18,18 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/test_websphere'
+
+%w(
+  debian
+  ubuntu
+  centos
+  redhat
+  scientific
+  fedora
+  amazon
+  arch
+  oracle
+  suse
+).each do |os|
+  supports os
+end
