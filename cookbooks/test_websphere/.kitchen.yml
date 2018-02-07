@@ -23,7 +23,7 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[test_websphere::create_profile]
+      - recipe[test_websphere::default]
     verifier:
       inspec_tests:
         - test/smoke/default
