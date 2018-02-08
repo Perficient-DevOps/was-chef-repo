@@ -8,6 +8,7 @@ default['was']['was_user']	= 'wasadmin'
 default['was']['was_pass']	 = 'adminwas'
 default['was']['soap_port']     = '10003'
 default['was']['host']          = 'STLSCVMG95219'
+default['was']['jython_path']   = '/WorkingData/chef-repo/was-chef-repo/jythonScripts/'
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
