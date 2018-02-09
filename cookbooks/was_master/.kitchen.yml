@@ -13,8 +13,12 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7
+  - name: centos-74-was855-chef13
+    driver:
+      box: centos-74-was855-chef13
+      box_url: https://s3.us-east-2.amazonaws.com/devops-perficient-images/boxes/centos-74-was855-chef13.box
+      customize:
+        memory: 4096
 
 suites:
   - name: default
