@@ -12,4 +12,15 @@ default['was']['jython_path']   = '/WorkingData/chef-repo/was-chef-repo/jythonSc
 default['was']['server_min_heap']     = '64'
 default['was']['server_max_heap']     = '128'
 
+#JDBC Attributes
+default['was']['cluster'] = 'DevCluster'
+default['was']['db_name'] = 'Derby'
+default['was']['jdbc_provider'] = 'Derby JDBC Provider'
+default['was']['data_source'] = 'XA data source'
+default['was']['provider_name'] = 'Bruce Provider'
+default['was']['provider_jar_path'] '/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar'
+default['was']['data_source_namespace'] = 'org.apache.derby.jdbc.EmbeddedXADataSource'
+
+
+
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
