@@ -27,7 +27,7 @@ default['was']['provider_name'] = 'Bruce Provider'
 default['was']['provider_jar_path'] = '/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar'
 default['was']['provider_description'] = 'description'
 default['was']['data_source_namespace'] = 'org.apache.derby.jdbc.EmbeddedXADataSource'
-
+default['was']['scope_level'] = 'Cluster'
 
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
