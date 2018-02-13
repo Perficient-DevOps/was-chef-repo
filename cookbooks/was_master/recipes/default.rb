@@ -4,6 +4,10 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
+include_recipe "was_master::prerequisites"
+
+#include_recipe "was_master::create_profiles"
+
 include_recipe "was_master::create_was_server"
 
 include_recipe "was_master::start_was_server"
