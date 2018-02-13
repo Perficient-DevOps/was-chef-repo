@@ -18,7 +18,8 @@ default['was']['db_name'] = 'Derby'
 default['was']['jdbc_provider'] = 'Derby JDBC Provider'
 default['was']['data_source'] = 'XA data source'
 default['was']['provider_name'] = 'Bruce Provider'
-default['was']['provider_jar_path'] '/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar'
+default['was']['provider_jar_path'] = '/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar'
+default['was']['provider_description'] = 'description'
 default['was']['data_source_namespace'] = 'org.apache.derby.jdbc.EmbeddedXADataSource'
 
 
