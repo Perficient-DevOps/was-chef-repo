@@ -33,5 +33,6 @@ default['was']['data_source_name']  = 'PlantsByWebSphereDataSource'
 default['was']['data_source_jndi']  = 'jndi/PlantsByWebSphereDataSource'
 default['was']['data_source_description']  = 'DataSource Description'
 default['was']['database_path']  = '/WorkingData/webapps/Database/PLANTSDB'
+default['was']['db_adapter'] = 'com.ibm.websphere.rsadapter.DerbyDataStoreHelper'
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
