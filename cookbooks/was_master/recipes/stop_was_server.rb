@@ -6,6 +6,14 @@
 
 jython_script_name = 'stopAppServer.py'
 
+directory "#{node['was']['jython_path']}" do
+  owner node[:was][:run_user]
+  group node[:was][:run_group]
+  mode '0755'
+  action :create
+  recursive true
+end
+
 cookbook_file "#{node['was']['jython_path']}/#{jython_script_name}" do
   source jython_script_name
   owner node[:was][:run_user]
