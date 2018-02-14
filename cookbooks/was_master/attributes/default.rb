@@ -1,25 +1,38 @@
+
+
+default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
+
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
 
+# Dmgr
 default['was']['dmgr_profile_name'] = 'Dmgr01'
-default['was']['profile_name']  = 'DevDmgr'
-default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
+default['was']['dmgr_node_name'] = 'DmgrNode'
 
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
-default['was']['dmgr_node_name'] = 'DmgrNode'
+default['was']['cluster'] = 'DevCluster'
+
+# App Server
+default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
 default['was']['server_name']   = 'rory'
 default['was']['was_user']      = 'wasadmin'
 default['was']['was_pass']      = 'adminwas'
 default['was']['soap_port']     = '10003'
 default['was']['host']          = 'STLSCVMG95219'
-default['was']['jython_path']   = '/WorkingData/chef-repo/was-chef-repo/jythonScripts/'
+
+# FIXME: This should not exist
+default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScripts"
+
+# which server is this for
 default['was']['server_min_heap']     = '64'
 default['was']['server_max_heap']     = '128'
 
 #JDBC Attributes
-default['was']['cluster'] = 'DevCluster'
+
+
+## FIXME: These are application specific and should be moved to a wrapper cookbook
 default['was']['db_name'] = 'Derby'
 default['was']['jdbc_provider'] = 'Derby JDBC Provider'
 default['was']['data_source_implementation_provider'] = 'XA data source'
