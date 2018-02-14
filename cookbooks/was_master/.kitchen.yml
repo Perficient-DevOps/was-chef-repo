@@ -29,6 +29,8 @@ suites:
         - test/smoke/default
     attributes:
       was:
+        host: default-centos-74-was855-chef13.vagrantup.com
         profile_name: Dmgr01
+        soap_port: 8879
         cell_name: Defaul01Cell
         node_name: Default02Node
