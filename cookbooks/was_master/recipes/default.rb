@@ -6,7 +6,7 @@
 
 include_recipe "was_master::prerequisites"
 
-#include_recipe "was_master::create_profiles"
+include_recipe "was_master::create_profiles"
 
 include_recipe "was_master::create_was_server"
 

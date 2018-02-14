@@ -29,6 +29,6 @@ suites:
         - test/smoke/default
     attributes:
       was:
-        profile_name: Dmgr001
+        profile_name: Dmgr01
         cell_name: Defaul01Cell
         node_name: Default02Node
