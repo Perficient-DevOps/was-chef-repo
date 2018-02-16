@@ -29,6 +29,8 @@ default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScr
 default['was']['server_min_heap']     = '64'
 default['was']['server_max_heap']     = '128'
 
+default['was']['jvm_properties']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
+
 #JDBC Attributes
 
 
