@@ -12,6 +12,7 @@ default['was']['dmgr_node_name'] = 'DmgrNode'
 
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
+default['was']['create_cluster_name'] = 'TestCluster'
 
 # App Server
 default['was']['profile_name']  = 'DevDmgr'
