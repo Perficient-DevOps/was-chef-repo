@@ -7,7 +7,7 @@
 #default['was']['soap_port']     = '10003'
 
 #was9 values
-default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver'
+default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver/'
 default['was']['dmgr_profile_name'] = 'Dev9Dev'
 default['was']['dmgr_node_name'] = 'Dev9Node1'
 default['was']['soap_port']     = '13003'
