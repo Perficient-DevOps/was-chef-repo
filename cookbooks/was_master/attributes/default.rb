@@ -1,14 +1,20 @@
 
 
-default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
+#was855 values
+#default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
+#default['was']['dmgr_profile_name'] = 'Dmgr01'
+#default['was']['dmgr_node_name'] = 'DmgrNode'
+#default['was']['soap_port']     = '10003'
+
+#was9 values
+default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver'
+default['was']['dmgr_profile_name'] = 'Dev9Dev'
+default['was']['dmgr_node_name'] = 'Dev9Node1'
+default['was']['soap_port']     = '13003'
 
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
-
-# Dmgr
-default['was']['dmgr_profile_name'] = 'Dmgr01'
-default['was']['dmgr_node_name'] = 'DmgrNode'
 
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
@@ -20,7 +26,7 @@ default['was']['node_name']     = 'STLSCVMG95218Node02'
 default['was']['server_name']   = 'rory'
 default['was']['was_user']      = 'wasadmin'
 default['was']['was_pass']      = 'adminwas'
-default['was']['soap_port']     = '10003'
+
 default['was']['host']          = 'STLSCVMG95219'
 
 # FIXME: This should not exist
