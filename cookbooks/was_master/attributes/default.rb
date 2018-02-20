@@ -14,7 +14,7 @@ default['was']['dmgr_profile_name'] = 'Dev9Dev'
 default['was']['dmgr_node_name'] = 'Dev9Node1'
 default['was']['soap_port']     = '13003'
 default['was']['profile_name']  = 'Dev9Node1'
-default['was']['node_name']     = 'Dev9Node1'
+default['was']['node_name']     = 'STLSCVMG95219Node03'
 
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
