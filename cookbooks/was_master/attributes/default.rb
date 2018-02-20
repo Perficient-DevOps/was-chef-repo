@@ -6,6 +6,7 @@
 #default['was']['dmgr_node_name'] = 'DmgrNode'
 #default['was']['soap_port']     = '10003'
 #default['was']['profile_name']  = 'DevDmgr'
+#default['was']['node_name']     = 'STLSCVMG95218Node02'
 
 #was9 values
 default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver/'
@@ -13,6 +14,7 @@ default['was']['dmgr_profile_name'] = 'Dev9Dev'
 default['was']['dmgr_node_name'] = 'Dev9Node1'
 default['was']['soap_port']     = '13003'
 default['was']['profile_name']  = 'Dev9Node1'
+default['was']['node_name']     = 'Dev9Node1'
 
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
@@ -23,7 +25,7 @@ default['was']['cluster'] = 'DevCluster'
 default['was']['create_cluster_name'] = 'TestCluster'
 
 # App Server
-default['was']['node_name']     = 'STLSCVMG95218Node02'
+
 default['was']['server_name']   = 'rory'
 default['was']['was_user']      = 'wasadmin'
 default['was']['was_pass']      = 'adminwas'
