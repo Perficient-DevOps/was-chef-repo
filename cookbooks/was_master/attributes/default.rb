@@ -23,7 +23,6 @@ default['was']['cluster'] = 'DevCluster'
 default['was']['create_cluster_name'] = 'TestCluster'
 
 # App Server
-default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
 default['was']['server_name']   = 'rory'
 default['was']['was_user']      = 'wasadmin'
