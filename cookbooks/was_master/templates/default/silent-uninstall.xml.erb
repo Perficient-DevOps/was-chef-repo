@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  sudo /opt/IBM/InstallationManager/eclipse/tools/imcl -acceptLicense -showVerboseProgress input was-install-record.xml
+
+-->
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='<%= @shared_location %>'/>
+  </variables>
+  <server>
+    <repository location='<%= @install_repo %>'/>
+  </server>
+  <profile id='<%= @profile_name %>' installLocation='<%= @install_location %>'>
+    <data key='cic.selector.arch' value='<%= @install_arch %>'/>
+  </profile>
+  <uninstall>
+    <!-- IBM WebSphere Application Server Network Deployment -->
+    <offering profile='<%= @profile_name %>'
+              id='<%= @profile_id %>'
+              version='<%= @install_versiontag %>'
+              features='core.feature,ejbdeploy,thinclient,embeddablecontainer,com.ibm.sdk.6_64bit,samples'/>
+  </uninstall>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+</agent-input>
