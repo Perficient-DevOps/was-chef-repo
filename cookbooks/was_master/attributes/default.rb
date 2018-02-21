@@ -20,10 +20,15 @@ default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
 
+#cluster and cell names for server operations
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
+
+#cluster names for specific cluster operations
 default['was']['create_cluster_name'] = 'TestCluster'
 default['was']['delete_cluster_name'] = 'TestCluster'
+default['was']['start_cluster_name'] = 'TestCluster'
+default['was']['stop_cluster_name'] = 'TestCluster'
 
 # App Server
 
