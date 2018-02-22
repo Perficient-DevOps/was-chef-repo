@@ -26,9 +26,8 @@ default['was']['cluster'] = 'DevCluster'
 
 #cluster names for specific cluster operations
 default['was']['create_cluster_name'] = 'TestCluster'
-default['was']['delete_cluster_name'] = 'TestCluster'
-default['was']['start_cluster_name'] = 'TestCluster'
-default['was']['stop_cluster_name'] = 'TestCluster'
+default['was']['cluster_node_name'] = 'STLSCVMG95219Node01'
+default['was']['cluster_member_name'] = 'roryClusterServer'
 
 # App Server
 
@@ -59,6 +58,8 @@ default['was']['provider_jar_path'] = '/opt/IBM/WebSphere/AppServer/derby/lib/de
 default['was']['provider_description'] = 'description'
 default['was']['data_source_namespace'] = 'org.apache.derby.jdbc.EmbeddedXADataSource'
 default['was']['scope_level'] = 'Cell'
+default['was']['data_source_scope'] = 'Cell'
+default['was']['jdbc_provider_scope'] = 'Cell'
 
 default['was']['data_source_name']  = 'PlantsByWebSphereDataSource'
 default['was']['data_source_jndi']  = 'jndi/PlantsByWebSphereDataSource'
