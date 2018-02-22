@@ -1,9 +1,9 @@
-name 'was_master'
+name 'was_cluster'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'All Rights Reserved'
-description 'Installs/Configures was_master'
-long_description 'Installs/Configures was_master'
+description 'Installs/Configures was_cluster'
+long_description 'Installs/Configures was_cluster'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
@@ -11,11 +11,10 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
 # uploaded to a Supermarket.
 #
-# issues_url 'https://github.com/<insert_org_here>/was_master/issues'
+# issues_url 'https://github.com/<insert_org_here>/was_cluster/issues'
 
 # The `source_url` points to the development repository for this cookbook.  A
 # `View Source` link will be displayed on this cookbook's page when uploaded to
 # a Supermarket.
 #
-# source_url 'https://github.com/<insert_org_here>/was_master'
-depends 'was_master'
+# source_url 'https://github.com/<insert_org_here>/was_cluster'
