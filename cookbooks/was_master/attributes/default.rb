@@ -20,14 +20,16 @@ default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
 
-#cluster and cell names for server operations
+#cluster and cell names for standalone server operations
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
 
 #cluster names for specific cluster operations
 default['was']['create_cluster_name'] = 'TestCluster'
-default['was']['cluster_node_name'] = 'STLSCVMG95219Node01'
-default['was']['cluster_member_name'] = 'roryClusterServer'
+default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
+default['was']['cluster_first_member_name'] = 'roryClusterServer'
+default['was']['cluster_subsequent_node_name'] = 'STLSCVMG95219Node01'
+default['was']['cluster_subsequent_member_name'] = 'roryClusterServer'
 
 # App Server
 
