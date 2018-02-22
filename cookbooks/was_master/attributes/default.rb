@@ -24,13 +24,6 @@ default['was']['run_user_passwd'] = '$ecret!'
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
 
-#cluster names for specific cluster operations
-default['was']['create_cluster_name'] = 'TestCluster'
-default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
-default['was']['cluster_first_member_name'] = 'roryClusterServer'
-default['was']['cluster_subsequent_node_name'] = 'STLSCVMG95218Node02'
-default['was']['cluster_subsequent_member_name'] = 'roryClusterServer2'
-
 # App Server
 
 default['was']['server_name']   = 'rory'
@@ -48,25 +41,5 @@ default['was']['server_max_heap']     = '128'
 
 default['was']['jvm_properties']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
-#JDBC Attributes
-
-
-## FIXME: These are application specific and should be moved to a wrapper cookbook
-default['was']['db_name'] = 'Derby'
-default['was']['jdbc_provider'] = 'Derby JDBC Provider'
-default['was']['data_source_implementation_provider'] = 'XA data source'
-default['was']['provider_name'] = 'Bruce Plants Provider'
-default['was']['provider_jar_path'] = '/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar'
-default['was']['provider_description'] = 'description'
-default['was']['data_source_namespace'] = 'org.apache.derby.jdbc.EmbeddedXADataSource'
-default['was']['scope_level'] = 'Cell'
-default['was']['data_source_scope'] = 'Cell'
-default['was']['jdbc_provider_scope'] = 'Cell'
-
-default['was']['data_source_name']  = 'PlantsByWebSphereDataSource'
-default['was']['data_source_jndi']  = 'jndi/PlantsByWebSphereDataSource'
-default['was']['data_source_description']  = 'DataSource Description'
-default['was']['database_path']  = '/WorkingData/webapps/Database/PLANTSDB'
-default['was']['db_adapter'] = 'com.ibm.websphere.rsadapter.DerbyDataStoreHelper'
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
