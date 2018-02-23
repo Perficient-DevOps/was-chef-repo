@@ -6,11 +6,12 @@ preferLocal="true"
 createReplicationDomain="true"
 	
 # first check and see if the cluster already exists
+if debug == "YES":
+	print "First check and see if cluster exists."
 if AdminConfig.getid("/ServerCluster:" + clusterName + "/") != "":
 	print "Cluster ", clusterName, " already exists."
 	sys.exit(1)
 		
-print "Creating cluster"
 	
 #Build options list for -clusterConfig step.
 clusterConfigOptions = [clusterName, preferLocal]
@@ -20,7 +21,7 @@ replicationDomainOptions = []
 
 
 if debug == "YES":
-		print "ready to create the cluster "
+		print "Ready to create the cluster "
 	#endIF
 	
 try:
@@ -29,9 +30,12 @@ try:
 	#endIF
 	# Call AdminTask to create the cluster.
 	AdminTask.createCluster(["-clusterConfig",[clusterConfigOptions]])
+	if debug == "YES":
+		print "After the AdminTask.createCluster call and OK."
+	#EndIf
 #endTry
 except:
-	print "Exception with AdminTask.createCluster call."
+	print "Exception with AdminTask.createCluster call. Do not save configuration."
 	sys.exit(1)
 #endExcept	
 
@@ -40,18 +44,17 @@ if debug == "YES":
 #EndIf
 # Save the configuration change.
 #
-if debug == "YES":
-		print "Created the cluster and ready to save."
-	#endIF
 try:
 	if debug == "YES":
-		print "before AdminConfig.save."
+		print "Before AdminConfig.save."
 	#endIF
 	# Call save
 	AdminConfig.save()
+	if debug == "YES":
+		print "After the save of the configuration."
 #endTry
 except:
-	print "Exception with AdminConfig.save call."
+	print "Exception with AdminConfig.save call. Do not save the configuration."
 	sys.exit(1)
 #endExcept	
 	
