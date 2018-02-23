@@ -1,50 +1,40 @@
 
+
 clusterName = sys.argv[0]
 debug = sys.argv[1]
 
-
+	
 # first check and see if the cluster already exists
+if debug == "YES":
+	print "First verify that we indeed have a valid cluster name."
+#EndIf
 if AdminConfig.getid("/ServerCluster:" + clusterName + "/") == "":
-	print "Cluster ", clusterName, " does not exist."
+	print "Cluster ", clusterName, " does not exist.  Cannot start cluster that does not exist."
 	sys.exit(1)
-
-print "Starting cluster"
-
+		
+		
 
 if debug == "YES":
-		print "ready to start the cluster "
+		print "Ready to start the cluster "
 	#endIF
-
+	
 try:
 	if debug == "YES":
-		print "before AdminClusterManagement.startSingleCluster call."
+		print "Before AdminClusterManagement.startSingleCluster call."
 	#endIF
 	# Call AdminClusterManagement.startSingleCluster to start the cluster.
 	AdminClusterManagement.startSingleCluster(clusterName)
-#endTry
-except:
-	print "Exception with AdminClusterManagement.startSingleCluster call."
-	sys.exit(1)
-#endExcept
-
-# Save the configuration change.
-#
-if debug == "YES":
-		print "Started the cluster and ready to save."
-	#endIF
-try:
 	if debug == "YES":
-		print "before AdminConfig.save."
+		print "After AdminClusterManagement.startSingleCluster call -successful. "
 	#endIF
-	# Call save
-	AdminConfig.save()
 #endTry
 except:
-	print "Exception with AdminConfig.save call."
+	print "Exception with AdminClusterManagement.startSingleCluster call.  Cluster not started."
 	sys.exit(1)
-#endExcept
-
+#endExcept	
+	
+	
 if debug == "YES":
-		print "Done with cluster start."
+		print "Done with cluster start operation."
 	#endIF
 sys.exit(0)
