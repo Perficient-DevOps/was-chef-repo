@@ -50,4 +50,6 @@ default['was']['change_port_server_name'] = 'rory'
 default['was']['change_port_node_name'] = 'STLSCVMG95218Node02'
 default['was']['start_port']  = '15001'
 
+default['was']['jdk_version'] = '1.7.1_64'
+
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
