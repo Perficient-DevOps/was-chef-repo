@@ -26,11 +26,10 @@ default['was']['cluster'] = 'DevCluster'
 
 # App Server
 
-default['was']['server_name']   = 'rory'
+default['was']['server_name']   = 'rory' #Server to be created
 default['was']['was_user']      = 'wasadmin'
 default['was']['was_pass']      = 'adminwas'
-
-default['was']['host']          = 'STLSCVMG95219'
+default['was']['host']          = 'STLSCVMG95219'#DMgr Hostname for SOAP Commands
 
 # FIXME: This should not exist
 default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScripts"
@@ -41,5 +40,14 @@ default['was']['server_max_heap']     = '128'
 
 default['was']['jvm_properties']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
+#Set Virtual Host
+default['was']['virtual_host_name'] = 'default_host'
+default['was']['virtual_host_port'] = '2323'
+default['was']['host_name'] = 'MyHost'
+
+#Change Server ports
+default['was']['change_port_server_name'] = 'rory'
+default['was']['change_port_node_name'] = 'STLSCVMG95218Node02'
+default['was']['start_port']  = '15001'
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
