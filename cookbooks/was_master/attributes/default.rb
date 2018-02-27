@@ -40,6 +40,9 @@ default['was']['server_max_heap']     = '128'
 
 default['was']['jvm_properties']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
+default['was']['jvm_gc']  = '-Xgcpolicy:gencon'
+default['was']['jvm_rm_gc'] = ''
+
 #Set Virtual Host
 default['was']['virtual_host_name'] = 'default_host'
 default['was']['virtual_host_port'] = '2323'
