@@ -46,8 +46,10 @@ default['was']['jvm_rm_gc'] = ''
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
 
+default['was']['jaas_alias_name'] = 'myAlias'
 default['was']['jaas_object_username'] = 'JaasUserName'
 default['was']['jaas_object_password'] = 'JaasPassword'
+default['was']['jaas_description']  = 'JaasDescription'
 
 #Set Virtual Host
 default['was']['virtual_host_name'] = 'default_host'
