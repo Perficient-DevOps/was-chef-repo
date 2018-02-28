@@ -38,10 +38,16 @@ default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScr
 default['was']['server_min_heap']     = '64'
 default['was']['server_max_heap']     = '128'
 
-default['was']['jvm_properties']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
+default['was']['jvm_arguments']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
 default['was']['jvm_gc']  = '-Xgcpolicy:gencon'
 default['was']['jvm_rm_gc'] = ''
+
+default['was']['jvm_property'] = 'jvmPropertyName'
+default['was']['jvm_property_value'] = 'jvmPropertyValue'
+
+default['was']['jaas_object_username'] = 'JaasUserName'
+default['was']['jaas_object_password'] = 'JaasPassword'
 
 #Set Virtual Host
 default['was']['virtual_host_name'] = 'default_host'
