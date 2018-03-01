@@ -24,6 +24,9 @@ default['was']['run_user_passwd'] = '$ecret!'
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
 
+#cluster operations
+default['was']['create_cluster_name'] = 'TestCluster2'
+
 # App Server
 
 default['was']['server_name']   = 'rory' #Server to be created
