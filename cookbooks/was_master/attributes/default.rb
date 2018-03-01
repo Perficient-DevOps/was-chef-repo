@@ -24,6 +24,9 @@ default['was']['run_user_passwd'] = '$ecret!'
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
 
+#cluster operations
+default['was']['create_cluster_name'] = 'TestCluster2'
+
 # App Server
 
 default['was']['server_name']   = 'rory' #Server to be created
@@ -46,8 +49,10 @@ default['was']['jvm_rm_gc'] = ''
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
 
+default['was']['jaas_alias_name'] = 'myAlias'
 default['was']['jaas_object_username'] = 'JaasUserName'
 default['was']['jaas_object_password'] = 'JaasPassword'
+default['was']['jaas_description']  = 'JaasDescription'
 
 #Set Virtual Host
 default['was']['virtual_host_name'] = 'default_host'
