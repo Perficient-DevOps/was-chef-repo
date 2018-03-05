@@ -22,5 +22,5 @@ cookbook_file "#{node['was']['jython_path']}/#{jython_script_name}" do
 end
 
 execute "Start Cluster" do
-  command "#{node['was']['install_home']}bin/wsadmin.sh -conntype SOAP -host #{ node['was']['host'] } -port #{ node['was']['soap_port'] } -lang jython -user #{node['was']['was_user']} -password #{node['was']['was_pass']} -f #{node['was']['jython_path']}/#{jython_script_name} \"#{node['was']['create_cluster_name']}\" \"#{node['was']['cluster_subsequent_member_name']}\" \"#{node['was']['cluster_subsequent_node_name']}\" \"YES\""
+  command "#{node['was']['install_home']}bin/wsadmin.sh -conntype SOAP -host #{ node['was']['host'] } -port #{ node['was']['soap_port'] } -lang jython -user #{node['was']['was_user']} -password '#{node['was']['was_pass']}' -f #{node['was']['jython_path']}/#{jython_script_name} \"#{node['was']['create_cluster_name']}\" \"#{node['was']['cluster_subsequent_member_name']}\" \"#{node['was']['cluster_subsequent_node_name']}\" \"YES\""
 end
