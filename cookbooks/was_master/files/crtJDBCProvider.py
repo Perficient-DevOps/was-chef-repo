@@ -5,7 +5,7 @@
 #
 # Parameters:
 #		Script takes three parameters.
-#		1) Cluster name
+#		1) Cluster name/server name
 #		2) Database type
 #		3) Provider type
 #		4) Implementation type
@@ -13,8 +13,9 @@
 #		6) Classpath
 #		7) Description 
 #		8) Implementation class
-#		9) Scope: "Cell" or "Cluster"
-#		10) Debug "YES" or "NO" for printing debug statements for script 
+#		9) Scope: "Cell", "Server" or "Cluster"
+#		10) Node name 
+#		11) Debug "YES" or "NO" for printing debug statements for script 
 #
 # Return Codes:
 #		0 = Completed without errors
@@ -136,12 +137,12 @@ def createJDBCProvider(scope, jdbcDBType, jdbcProviderType, jdbcImplementationTy
 # main logic
 
 if __name__ == '__main__':
-    if len(sys.argv) < 10:
+    if len(sys.argv) < 11:
     	print 'need node name, server name, generic arguments and debug'
         sys.exit(1)
         
-debug=sys.argv[9]
-print "value of arg 7 is =", sys.argv[9]
+debug=sys.argv[10]
+
 if debug == "YES":
 	print "args is :"
 	for arg in sys.argv:
@@ -153,20 +154,34 @@ for arg in sys.argv:
     print arg
     
 # check and see if we have a cluster or cell scoped provider 
-print "before the check if cell or cluster and values is = ", sys.argv[8]
+print "before the check if cell, cluster or server  and values is = ", sys.argv[8]
 if sys.argv[8] == "Cell":
 	cell = AdminControl.getCell()
 	scope = "Cell=" + cell
 	if debug == "YES":
-		print "we have a cell scoped creation."
+		print "We have a cell scope provider creation.  Scope is = ", scope 
 	#endIF
-else:
+elif sys.argv[8] == "Cluster":
 	clusterName = sys.argv[0]
 	scope = "Cluster=" + clusterName
 	if debug == "YES":
-		print "we have a cluster scoped creation."
+		print "We have a cluster scoped creation. Scope is = ", scope
 	#endIf
-#endElse
+elif sys.argv[8] == "Node":
+	NodeName = sys.argv[9]
+	scope = "Node=" + NodeName
+	if debug == "YES":
+		print "We have a node scope provider creation.  Scope is = ", scope
+	#EndIf
+else:
+	# we have a server scope 
+	serverName = sys.argv[0]
+	NodeName = sys.argv[9]
+	scope = "Node=" + NodeName + ",Server=" + serverName
+	if debug == "YES":
+		print "We have a server scope provider creation.  Scope is = ", scope
+	#EndIf
+#endIfElse
 
 print "before the call to e function"
 #Call the createJDBCProvider() method at the cluster scope
