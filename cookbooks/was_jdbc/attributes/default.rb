@@ -14,3 +14,10 @@ default['was']['data_source_jndi']  = 'jndi/PlantsByWebSphereDataSource'
 default['was']['data_source_description']  = 'DataSource Description'
 default['was']['database_path']  = '/WorkingData/webapps/Database/PLANTSDB'
 default['was']['db_adapter'] = 'com.ibm.websphere.rsadapter.DerbyDataStoreHelper'
+
+default['was']['data_source_min'] = '10' #Datasouce connection pool minimum
+default['was']['data_source_max'] = '20' #Datasouce connection pool maximum
+
+default['was']['database_url']  = 'jdbc:oracle:thin:@TXAIXEBNDBD02:1536:ECPD2X'
+default['was']['data_source_helper_class'] = 'com.ibm.websphere.rsadapter.Oracle11gDataStoreHelper'
+default['was']['container_managed_persistence'] = 'true'
