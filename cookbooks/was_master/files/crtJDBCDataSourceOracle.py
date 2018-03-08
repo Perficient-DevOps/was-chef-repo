@@ -6,27 +6,29 @@ def createDatasource(clusterName, jdbcProviderName, \
 	if debug == "YES":
 		print "Creating datasource:", dsName
 	#endIf
-	# check and see what type of scope is on the provider so that we can do a getId against it.
+	# check and see what type of scope is on the provider so that we can do a getId against it.  
+	## need to build out the containment path
+	cell = AdminControl.getCell()
 	if providerScope == "Cell":
 		print "cell scope for provider"
-		cell = AdminControl.getCell()
+		#cell = AdminControl.getCell()
 		proScopeValue = "/Cell:" + cell
 		if debug == "YES":
 			print "We have a provider at the Cell level = ", proScopeValue
 		#endIf
 	#endIF
 	elif  providerScope == "Cluster":
-		proScopeValue = "/ServerCluster:" + clusterName
+		proScopeValue = "/Cell:" + cell + "/ServerCluster:" + clusterName
 		if debug == "YES":
 			print "We have a provider at the Cluster level = ", proScopeValue
 		#endIf
 	elif  providerScope == "Node":
-		proScopeValue = "/Node:" + nodeNameDS
+		proScopeValue = "/Cell:" + cell + "/Node:" + nodeNameDS
 		if debug == "YES":
 			print "We have a provider at the Node level = ", proScopeValue
 		#endIf
 	elif  providerScope == "Server":
-		proScopeValue = "/Node:" + nodeNameDS + "/Server:" + clusterName
+		proScopeValue = "/Cell:" + cell + "/Node:" + nodeNameDS + "/Server:" + clusterName
 		if debug == "YES":
 			print "We have a provider at the Server level = ", proScopeValue
 		#endIf
@@ -127,7 +129,64 @@ def createDatasource(clusterName, jdbcProviderName, \
 		print "Pending changes were reset."
 		return 2
 	
+	# otherwise we have a valid completion 
+	#*****************************************************************************
+	# get id of datasource we just created, first get the containment path
+	dsIDname = proScopeValue + "/JDBCProvider:" + jdbcProviderName + "/DataSource:" + dsName.replace("'","") + "/"
+	if debug == "YES":
+		print "New datasource we created and containment path is  = ",dsIDname
+	#EndIF
 	
+	# retrieve internal id of datasource
+	dsId = AdminConfig.getid(dsIDname)
+	if debug == "YES":
+		print "New datasource id is = ", dsId
+	#Endif
+	
+	# now lets create the mapping module for datasource - step one of three 
+	AdminConfig.create("MappingModule",dsId,[ 
+		['mappingConfigAlias', 'DefaultPrincipalMapping'],
+		['authDataAlias', dbAlias]])
+	if debug == "YES":
+		print "After the create of the mapping module."
+	#EndIf
+	
+	# next we need to get Connection Factory object that was created
+	dsNameCF = dsName.replace("'","") + '_CF'
+	print " connection factory name is = ", dsNameCF
+	# now lets get configuration id for the connection factory
+	cfId = AdminConfig.getid('/CMPConnectorFactory:'+dsNameCF+'/')
+	print "the name of the connection factory id is = ",cfId
+	
+	AdminConfig.modify(cfId,[['name', dsNameCF],['authDataAlias', dbAlias],
+		['xaRecoveryAuthAlias', ""]])
+	print "after step 2 modify on connection factory"
+	
+	# now lets complete step three for security updates
+	# set mapping module for connection factory
+	if debug == "YES":
+		print "Before the step 3 mappingmodule for connection factory"
+	#EndIf
+	
+	AdminConfig.create("MappingModule",cfId,[ 
+		['mappingConfigAlias', 'DefaultPrincipalMapping'],
+		['authDataAlias', dbAlias]])
+	if debug == "YES":
+		print "After updating the updating Container-managed authentication alias - now save."
+	#EndIf
+	
+	try:
+		# Save the configuration
+		AdminConfig.save()
+	
+		if debug == "YES":
+			print "Done with updating Container-managed authentication alias."
+		#endIF
+	except:
+		AdminConfig.reset()
+		print "Failed to update Container-managed authentication alias."
+		
+		return 2
 	
 	return 0
 
