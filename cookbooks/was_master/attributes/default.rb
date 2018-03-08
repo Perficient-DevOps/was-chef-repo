@@ -68,7 +68,7 @@ default['was']['jdk_version'] = '1.7.1_64'
 
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
-
+default['was']['cluster_or_server_name'] = 'MyServer'
 default['was']['db_type'] = 'Oracle'
 default['was']['jdbc_provider'] = 'Oracle JDBC Driver'
 default['was']['data_source_implementation_type'] = 'Connection pool data source'
