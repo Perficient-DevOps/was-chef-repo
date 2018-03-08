@@ -93,5 +93,6 @@ default['was']['data_source_max'] = '20' #Datasouce connection pool maximum
 
 default['was']['database_url']  = 'jdbc:oracle:thin:@TXAIXEBNDBD02:1536:ECPD2X'
 default['was']['data_source_helper_class'] = 'com.ibm.websphere.rsadapter.Oracle11gDataStoreHelper'
+default['was']['component_managed_persistence'] = 'true'
 default['was']['container_managed_persistence'] = 'true'
-default['was']['data_source_cluster'] = 'ClusterName'
+default['was']['data_source_cluster_or_server'] = 'ClusterName'

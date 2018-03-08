@@ -4,17 +4,6 @@
 #
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
-#temp_script= File.join( Chef::Config[:file_cache_path], 'was_jvm_update_settings.py' )
-
-#template temp_script do
-#  source 'was_jvm_update_settings.py.erb'
-#  variables({
-#    :profile_path => node['was']['profile_path'],
-#    :cell_name => node['was']['cell_name'],
-#    :server_name => node['was']['server_name']
-#    })
-#  end
-
 jython_script_name = 'setJVMHeap.py'
 
 directory "#{node['was']['jython_path']}" do
