@@ -16,6 +16,7 @@ default['was']['node_name']     = 'STLSCVMG95218Node02'
 # default['was']['profile_name']  = 'Dev9Node1'
 # default['was']['node_name']     = 'STLSCVMG95219Node03'
 
+#Run user and run gtoup to create temporary wasadmin scripts on the file system
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
@@ -27,7 +28,7 @@ default['was']['cluster'] = 'DevCluster'
 #cluster operations
 default['was']['create_cluster_name'] = 'TestCluster2'
 
-# App Server
+# Create generic App Server
 
 default['was']['server_name']   = 'rory' #Server to be created
 default['was']['was_user']      = 'wasadmin'
@@ -36,6 +37,8 @@ default['was']['host']          = 'STLSCVMG95219'#DMgr Hostname for SOAP Command
 
 # FIXME: This should not exist
 default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScripts"
+#Profile path is used by the generic create server recipe
+default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
 # which server is this for
 default['was']['server_min_heap']     = '64'
@@ -43,8 +46,8 @@ default['was']['server_max_heap']     = '128'
 
 default['was']['jvm_arguments']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
-default['was']['jvm_gc']  = '-Xgcpolicy:gencon'
-default['was']['jvm_rm_gc'] = ''
+default['was']['jvm_gc']  = '-Xgcpolicy:gencon' #Set garbage collection
+default['was']['jvm_rm_gc'] = '' #remove garbage collection
 
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
@@ -66,8 +69,9 @@ default['was']['start_port']  = '15001'
 
 default['was']['jdk_version'] = '1.7.1_64'
 
-default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
+
+#Below attributes apply to datasouce and provider recipes
 default['was']['cluster_or_server_name'] = 'MyServer'
 default['was']['db_type'] = 'Oracle'
 default['was']['jdbc_provider'] = 'Oracle JDBC Driver'
@@ -88,11 +92,17 @@ default['was']['data_source_description']  = 'DataSource Description'
 default['was']['database_path']  = '/WorkingData/webapps/Database/PLANTSDB'
 default['was']['db_adapter'] = 'com.ibm.websphere.rsadapter.DerbyDataStoreHelper'
 
-default['was']['data_source_min'] = '10' #Datasouce connection pool minimum
-default['was']['data_source_max'] = '20' #Datasouce connection pool maximum
 
 default['was']['database_url']  = 'jdbc:oracle:thin:@TXAIXEBNDBD02:1536:ECPD2X'
 default['was']['data_source_helper_class'] = 'com.ibm.websphere.rsadapter.Oracle11gDataStoreHelper'
 default['was']['component_managed_persistence'] = 'true'
 default['was']['container_managed_persistence'] = 'true'
 default['was']['data_source_cluster_or_server'] = 'ClusterName'
+
+#Below attributes apply to datasource connection pool recipe
+default['was']['data_source_min'] = '10' #Datasouce connection pool minimum
+default['was']['data_source_max'] = '20' #Datasouce connection pool maximum
+default['was']['reap_time'] = '60'
+default['was']['unused_timeout']  = '60'
+default['was']['aged_timeout']  = '60'
+default['was']['purge_policy']  = 'FailingConnectionOnly'
