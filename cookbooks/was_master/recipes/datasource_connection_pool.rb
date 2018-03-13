@@ -3,7 +3,7 @@
 # Recipe:: datasource_min_max_connection_pool
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
-jython_script_name = 'setDataSourceMinMaxConnPool.py'
+jython_script_name = 'setDataSourceConnectionPool.py'
 
 directory "#{node['was']['jython_path']}" do
   owner node[:was][:run_user]
