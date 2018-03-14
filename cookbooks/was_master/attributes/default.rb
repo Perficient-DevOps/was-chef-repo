@@ -1,12 +1,15 @@
+#These values are test values and only appy to the Perficient internal environment
+#All of these values should be overridden by the JSON passed into UCD
 
-
-#was855 values
+#was855 base values used across multiple recipes
 default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
 default['was']['dmgr_profile_name'] = 'Dmgr01'
 default['was']['dmgr_node_name'] = 'DmgrNode'
 default['was']['soap_port']     = '10003'
 default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
+default['was']['was_user']      = 'wasadmin'
+default['was']['was_pass']      = 'adminwas'
 
 #was9 values
 # default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver/'
@@ -21,37 +24,48 @@ default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
 
+#cluster operations
+#cluster names for specific cluster operations
+default['was']['create_cluster_name'] = 'TestCluster2'
+default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
+default['was']['cluster_first_member_name'] = 'ClusterServerEin'
+default['was']['cluster_subsequent_node_name'] = 'STLSCVMG95218Node02'
+default['was']['cluster_subsequent_member_name'] = 'ClusterServerZwei'
+
+# Create generic App Server
+#create_was_server recipe
+default['was']['server_name']   = 'rory' #Server to be created
 #cluster and cell names for standalone server operations
 default['was']['cell_name']     = 'STLSCVMG95219Cell01'
 default['was']['cluster'] = 'DevCluster'
 
-#cluster operations
-default['was']['create_cluster_name'] = 'TestCluster2'
-
-# Create generic App Server
-
-default['was']['server_name']   = 'rory' #Server to be created
-default['was']['was_user']      = 'wasadmin'
-default['was']['was_pass']      = 'adminwas'
 default['was']['host']          = 'STLSCVMG95219'#DMgr Hostname for SOAP Commands
 
-# FIXME: This should not exist
+# This path need not change per environment, it should remain the same
 default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScripts"
 #Profile path is used by the generic create server recipe
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
-# which server is this for
+#set_jvm_heap recipe
 default['was']['server_min_heap']     = '64'
 default['was']['server_max_heap']     = '128'
 
+#set_basic_jvm_args recipe
 default['was']['jvm_arguments']  = '[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]'
 
+#set_jvm_garbage_collection recipe
 default['was']['jvm_gc']  = '-Xgcpolicy:gencon' #Set garbage collection
 default['was']['jvm_rm_gc'] = '' #remove garbage collection
 
+#set_jvm_custom_props recipe
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
 
+#set_jvm_log_size recipe
+default['was']['log_name'] = 'outputStreamRedirect' #This is for stdOut, stdErr value should be errorStreamRedirect
+default['was']['log_size'] = '5'
+
+#create_jaas_alias recipe
 default['was']['jaas_alias_name'] = 'myAlias'
 default['was']['jaas_object_username'] = 'JaasUserName'
 default['was']['jaas_object_password'] = 'JaasPassword'
@@ -67,9 +81,8 @@ default['was']['change_port_server_name'] = 'rory'
 default['was']['change_port_node_name'] = 'STLSCVMG95218Node02'
 default['was']['start_port']  = '15001'
 
+#set_server_jdk recipe
 default['was']['jdk_version'] = '1.7.1_64'
-
-
 
 #Below attributes apply to datasouce and provider recipes
 default['was']['cluster_or_server_name'] = 'MyServer'
