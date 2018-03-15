@@ -1,5 +1,5 @@
 
-def setJVMLogSize( nodeName, serverName,log, sizeL,debug):
+def setJVMLogSize( nodeName, serverName,log, sizeL,backupF,debug):
 	
 	if debug == "YES":
 		print "inside setJVMLogSize"
@@ -36,7 +36,7 @@ def setJVMLogSize( nodeName, serverName,log, sizeL,debug):
 			print "Before the show attribute of the log"
 		#endIF
 		# next we need to get the log of interest
-		AdminConfig.modify(log,[['rolloverSize', sizeL]])
+		AdminConfig.modify(log,[['rolloverSize', sizeL],['maxNumberOfBackupFiles',backupF]])
 		if debug == "YES":
 			print "After the modify of log  size."
 		#endIf
@@ -65,11 +65,11 @@ def setJVMLogSize( nodeName, serverName,log, sizeL,debug):
 
 # main logic
 if __name__ == '__main__':
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 6:
     	print 'need node name, server name, log type, log size and debug'
         sys.exit(1)
         
-debug=sys.argv[4]
+debug=sys.argv[5]
 if debug == "YES":
 	print "args is :"
 	for arg in sys.argv:
@@ -92,7 +92,7 @@ if debug == "YES":
 		print "node name =",sys.argv[0]
 #endIF
 # call function to set JVM log size
-rtn = setJVMLogSize( sys.argv[0], sys.argv[1], sys.argv[2],sys.argv[3], sys.argv[4])
+rtn = setJVMLogSize( sys.argv[0], sys.argv[1], sys.argv[2],sys.argv[3], sys.argv[4],sys.argv[5])
 if debug == "YES":
 		print "back from jvm set log size and return code is = " + str(rtn)
 #endIF
