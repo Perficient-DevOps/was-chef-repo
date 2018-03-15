@@ -64,6 +64,7 @@ default['was']['jvm_property_value'] = 'jvmPropertyValue'
 #set_jvm_log_size recipe
 default['was']['log_name'] = 'outputStreamRedirect' #This is for stdOut, stdErr value should be errorStreamRedirect
 default['was']['log_size'] = '5'
+default['was']['max_logs_to_keep'] = '5'
 
 #create_jaas_alias recipe
 default['was']['jaas_alias_name'] = 'myAlias'
