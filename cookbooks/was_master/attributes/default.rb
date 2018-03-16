@@ -120,3 +120,13 @@ default['was']['reap_time'] = '60'
 default['was']['unused_timeout']  = '60'
 default['was']['aged_timeout']  = '60'
 default['was']['purge_policy']  = 'FailingConnectionOnly'
+
+#create shared library recipes
+default['was']['library_scope'] = 'Cell'
+default['was']['server_or_cluster_name'] = 'STLSCVMG95219Node01' #NOTE: If you specify Cell level scope, then use ‘none’ for node and server/cluster parmaters.
+#NOTE: If you specify Node level scope, then use ‘none’ value for server/cluster parameter.
+#NOTE: If you specify Cluster scope, then use ‘none’ values for node name and server/cluster parameters.
+default['was']['shared_library_name'] = 'somelibraryname'
+default['was']['shared_library_classpath'] = 'somelib.zip'
+default['was']['shared_library_description'] = 'My Shared Library Description'
+default['was']['native_library_path'] = ''
