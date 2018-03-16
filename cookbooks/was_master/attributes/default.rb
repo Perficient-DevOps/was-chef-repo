@@ -129,4 +129,5 @@ default['was']['server_or_cluster_name'] = 'STLSCVMG95219Node01' #NOTE: If you s
 default['was']['shared_library_name'] = 'somelibraryname'
 default['was']['shared_library_classpath'] = 'somelib.zip'
 default['was']['shared_library_description'] = 'My Shared Library Description'
-default['was']['native_library_path'] = ''
+default['was']['native_library_path'] = 'none' #if specified otherwise none.
+default['was']['isolated_class_loader'] = 'true' #or false
