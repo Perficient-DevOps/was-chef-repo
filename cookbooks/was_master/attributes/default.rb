@@ -131,3 +131,12 @@ default['was']['shared_library_classpath'] = 'somelib.zip'
 default['was']['shared_library_description'] = 'My Shared Library Description'
 default['was']['native_library_path'] = 'none' #if specified otherwise none.
 default['was']['isolated_class_loader'] = 'true' #or false
+
+#create_jndi_namespace_binding
+default['was']['jndi_scope'] = 'Cell'
+default['was']['binding_identifier'] = ''
+default['was']['name_in_space'] = 'spaceBind'
+default['was']['string_value'] = 'false'
+
+#backup_config
+default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
