@@ -2,7 +2,7 @@
 if __name__ == '__main__':
     print "amount of args passed in is ", sys.argv
     if len(sys.argv) < 9:
-    	print 'Need datasource  name, min value, maximum value  and debug'
+    	print 'Need scope, node name,server/cluster name, library, class, desc, native, isolation and debug'
         sys.exit(1)
         
 debug=sys.argv[8]
