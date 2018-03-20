@@ -142,4 +142,5 @@ default['was']['string_value'] = 'false'
 default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
 
 #wasadmin JVM Size for all recipes using wasadmin
-default['was']['jvm_size'] = '–Xms512m –Xmx1024m'
+default['was']['java_option_first'] = '–Xms512m'
+default['was']['java_option_second'] = '–Xmx1024m'

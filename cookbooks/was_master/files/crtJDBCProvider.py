@@ -26,7 +26,7 @@
 #				indicating the incorrect parameter.
 #
 # Invocation Example:
-#		./wsadmin.sh -conntype SOAP -host STLSCVMG95219 -port 10003 -lang jython -javaoption #{node['was']['jvm_size']} -user wasadmin -password adminwas 
+#		./wsadmin.sh -conntype SOAP -host STLSCVMG95219 -port 10003 -lang jython -user wasadmin -password adminwas 
 #		\ -f /WorkingData/jythonScripts/crtJDBCProvider.py "DevCluster" "Derby" "Derby JDBC Provider" "XA data source" 
 #		\ "Bruce Plants Provider" "/opt/IBM/WebSphere/AppServer/derby/lib/derby.jar" "Derby provider for Plants by WebSphere" 
 #		\ "org.apache.derby.jdbc.EmbeddedXADataSource" "Cluster" "YES"

@@ -18,7 +18,7 @@
 #				indicating the incorrect parameter.
 #
 # Invocation Example:
-#		wsadmin.sh ( or .bat ) -profileName Dmgr -lang jython -javaoption #{node['was']['jvm_size']}
+#		wsadmin.sh ( or .bat ) -profileName Dmgr -lang jython 
 #			/ -f stopAppServer.py "mnNode" "myServer" "YES"
 # Author:
 #	Bruce Ryba

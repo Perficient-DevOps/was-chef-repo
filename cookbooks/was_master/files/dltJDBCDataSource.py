@@ -17,7 +17,7 @@
 #				indicating the incorrect parameter.
 #
 # Invocation Example:
-#		./wsadmin.sh -conntype SOAP -host STLSCVMG95219 -port 10003 -lang jython -javaoption #{node['was']['jvm_size']} -user wasadmin -password adminwas
+#		./wsadmin.sh -conntype SOAP -host STLSCVMG95219 -port 10003 -lang jython -user wasadmin -password adminwas
 #		\  -f /WorkingData/jythonScripts/dltJDBCDataSource.py "PlantsByWebSphereDataSource"  "YES"
 
 #

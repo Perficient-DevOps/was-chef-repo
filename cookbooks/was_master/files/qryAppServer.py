@@ -13,7 +13,7 @@
 #		1		-	Server does not exist in the cell
 #
 # Invocation:
-#	./wsadmin.sh -conntype SOAP -host myHost -port myPort -lang jython -javaoption #{node['was']['jvm_size']}
+#	./wsadmin.sh -conntype SOAP -host myHost -port myPort -lang jython 
 #		-f qryAppServer.py "myNode" "myServer" "Debug"
 #
 # Author:	Bruce J. Ryba  02/06/18
