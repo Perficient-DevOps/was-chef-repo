@@ -19,7 +19,7 @@
 #				indicating the incorrect parameter.
 #
 # Invocation Example:
-#		wsadmin.sh ( or .bat ) -profileName Dmgr -lang jython
+#		wsadmin.sh ( or .bat ) -profileName Dmgr -lang jython -javaoption #{node['was']['jvm_size']}
 #			/ -f setJVMGenArgs.py "mnNode" "myServer"
 #                       /  "[-Dsun.net.http.allowRestrictedHeaders=true -Dlog4j.configuration=file:/opt/IBM/BPM/rybalog4j.xml]" 
 #                       /  "YES"

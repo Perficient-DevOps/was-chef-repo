@@ -14,6 +14,6 @@ template temp_script do
 end
 
 execute "Create a WAS Application Server" do
-  command "#{node['was']['install_home']}bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -f #{temp_script} -user #{node['was']['was_user']} -password '#{node['was']['was_pass']}'"
+  command "#{node['was']['install_home']}bin/wsadmin.sh -profileName #{node['was']['profile_name']} -lang jython -javaoption #{node['was']['jvm_size']} -f #{temp_script} -user #{node['was']['was_user']} -password '#{node['was']['was_pass']}'"
   not_if { ::File.exist?( "#{node['was']['install_home']}profiles/#{node['was']['profile_name']}/config/cells/#{node['was']['cell_name']}/nodes/#{node['was']['node_name']}/servers/#{node['was']['server_name']}/server.xml")}
 end
