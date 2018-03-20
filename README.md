@@ -22,3 +22,5 @@ The config file, `.chef/knife.rb` is a repository specific configuration file fo
 # Next Steps
 
 Read the README file in each of the subdirectories for more information about what goes in those directories.
+
+Cookbooks was_cluster and was_jdbc can safely be ignored, the relevant recipes reside in the was_master cookbook.
