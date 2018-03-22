@@ -132,11 +132,24 @@ default['was']['shared_library_description'] = 'My Shared Library Description'
 default['was']['native_library_path'] = 'none' #if specified otherwise none.
 default['was']['isolated_class_loader'] = 'true' #or false
 
+#create unmanaged node recipe
+default['was']['node_host_name']  = 'myNodeHost'
+default['was']['node_os'] = 'linux' #os400, aix, hpux, linux, solaris, windows, os390
+
 #create_jndi_namespace_binding
 default['was']['jndi_scope'] = 'Cell'
 default['was']['binding_identifier'] = ''
 default['was']['name_in_space'] = 'spaceBind'
 default['was']['string_value'] = 'false'
+
+#create_web_server recipe
+default['was']['web_server_name'] = 'myWebServer'
+default['was']['web_server_port'] = '80'
+default['was']['plugin_install_root'] = '/pluginlocation'
+default['was']['web_install_root'] = '/web/sun/installroot'
+default['was']['admin_user_id'] = 'adminUser'
+default['was']['admin_password']  = 'adminPass'
+default['was']['web_server_type'] = 'IHS' #SUN or IHS
 
 #backup_config
 default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
