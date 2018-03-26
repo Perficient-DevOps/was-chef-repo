@@ -120,6 +120,7 @@ default['was']['reap_time'] = '60'
 default['was']['unused_timeout']  = '60'
 default['was']['aged_timeout']  = '60'
 default['was']['purge_policy']  = 'FailingConnectionOnly'
+default['was']['connection_timeout']  = '20'
 
 #create shared library recipes
 default['was']['library_scope'] = 'Cell'
