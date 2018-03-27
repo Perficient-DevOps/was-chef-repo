@@ -3,7 +3,7 @@
 # Recipe:: regenerate_web_server_plugin
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
-jython_script_name = 'regenWebServerPluginr.py'
+jython_script_name = 'regenWebServerPlugin.py'
 
 directory "#{node['was']['jython_path']}" do
   owner node[:was][:run_user]
