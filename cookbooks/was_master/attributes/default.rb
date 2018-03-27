@@ -155,6 +155,9 @@ default['was']['web_server_type'] = 'IHS' #SUN or IHS
 #backup_config
 default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
 
+#regenerate_web_server_plugin
+default['was']['web_node_name'] = 'myWebNodeName'
+
 #wasadmin JVM Size for all recipes using wasadmin
 default['was']['java_option_first'] = '-Xms256m'
 default['was']['java_option_second'] = '-Xmx512m'
