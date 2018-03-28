@@ -23,4 +23,5 @@ end
 
 execute "Regen Webserver Plugin" do
   command "#{node['was']['install_home']}bin/wsadmin.sh -conntype SOAP -host #{ node['was']['host'] } -port #{ node['was']['soap_port'] } -lang jython -user #{node['was']['was_user']} -password '#{node['was']['was_pass']}' -javaoption \"#{node['was']['java_option_first']}\" -javaoption \"#{node['was']['java_option_second']}\" -f #{node['was']['jython_path']}/#{jython_script_name} \"#{node['was']['web_node_name']}\" \"#{node['was']['web_server_name']}\" \"YES\""
+  live_stream true
 end
