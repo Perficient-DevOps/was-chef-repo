@@ -60,6 +60,7 @@ default['was']['jvm_rm_gc'] = '' #remove garbage collection
 #set_jvm_custom_props recipe
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
+default['was']['jvm_property_description'] = 'JVM Property Description'
 
 #set_jvm_log_size recipe
 default['was']['log_name'] = 'outputStreamRedirect' #This is for stdOut, stdErr value should be errorStreamRedirect
