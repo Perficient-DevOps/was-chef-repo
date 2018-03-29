@@ -5,6 +5,7 @@
 default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
 default['was']['dmgr_profile_name'] = 'Dmgr01'
 default['was']['dmgr_node_name'] = 'DmgrNode'
+default['was']['dmgr_server_name'] = 'dmgr'
 default['was']['soap_port']     = '10003'
 default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
@@ -19,14 +20,14 @@ default['was']['was_pass']      = 'adminwas'
 # default['was']['profile_name']  = 'Dev9Node1'
 # default['was']['node_name']     = 'STLSCVMG95219Node03'
 
-#Run user and run gtoup to create temporary wasadmin scripts on the file system
+#Run user and run group to create temporary wasadmin scripts on the file system
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
 
 #cluster operations
 #cluster names for specific cluster operations
-default['was']['create_cluster_name'] = 'TestCluster2'
+default['was']['create_cluster_name'] = 'TestCluster3'
 default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
 default['was']['cluster_first_member_name'] = 'ClusterServerEin'
 default['was']['cluster_subsequent_node_name'] = 'STLSCVMG95218Node02'
@@ -60,7 +61,6 @@ default['was']['jvm_rm_gc'] = '' #remove garbage collection
 #set_jvm_custom_props recipe
 default['was']['jvm_property'] = 'jvmPropertyName'
 default['was']['jvm_property_value'] = 'jvmPropertyValue'
-default['was']['jvm_property_description'] = 'JVM Property Description'
 
 #set_jvm_log_size recipe
 default['was']['log_name'] = 'outputStreamRedirect' #This is for stdOut, stdErr value should be errorStreamRedirect
@@ -121,7 +121,6 @@ default['was']['reap_time'] = '60'
 default['was']['unused_timeout']  = '60'
 default['was']['aged_timeout']  = '60'
 default['was']['purge_policy']  = 'FailingConnectionOnly'
-default['was']['connection_timeout']  = '20'
 
 #create shared library recipes
 default['was']['library_scope'] = 'Cell'
@@ -134,32 +133,16 @@ default['was']['shared_library_description'] = 'My Shared Library Description'
 default['was']['native_library_path'] = 'none' #if specified otherwise none.
 default['was']['isolated_class_loader'] = 'true' #or false
 
-#create unmanaged node recipe
-default['was']['node_host_name']  = 'myNodeHost'
-default['was']['node_os'] = 'linux' #os400, aix, hpux, linux, solaris, windows, os390
-
 #create_jndi_namespace_binding
 default['was']['jndi_scope'] = 'Cell'
 default['was']['binding_identifier'] = ''
 default['was']['name_in_space'] = 'spaceBind'
 default['was']['string_value'] = 'false'
 
-#create_web_server recipe
-default['was']['web_server_name'] = 'myWebServer'
-default['was']['web_server_port'] = '80'
-default['was']['plugin_install_root'] = '/pluginlocation'
-default['was']['web_install_root'] = '/web/sun/installroot'
-default['was']['admin_user_id'] = 'adminUser'
-default['was']['admin_password']  = 'adminPass'
-default['was']['web_server_type'] = 'IHS' #SUN or IHS
-
 #backup_config
 default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
 
-#regenerate_web_server_plugin
-default['was']['web_node_name'] = 'myWebNodeName'
-
 #wasadmin JVM Size for all recipes using wasadmin
-default['was']['java_option_first'] = '-Xms256m'
-default['was']['java_option_second'] = '-Xmx512m'
-default['was']['java_options']       = [ '-Xmx256m', '-Xmx512' ]
+default['was']['java_option_first'] = '-Xms512m'
+default['was']['java_option_second'] = '-Xmx1024m'
+default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024' ]
