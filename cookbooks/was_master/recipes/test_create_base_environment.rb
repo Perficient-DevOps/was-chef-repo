@@ -1,6 +1,6 @@
 #
-# Cookbook:: test_websphere
-# Recipe:: create_profiles
+# Cookbook:: nrg_websphere
+# Recipe:: test_create_base_environment
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
@@ -10,35 +10,35 @@ execute 'Run a test command' do
   user node[:was][:run_user]
 end
 
-execute 'create Dmgr profile' do
-  command "#{node[:was][:install_home]}/bin/manageprofiles.sh -create -templatePath #{node[:was][:install_home]}/profileTemplates/cell/dmgr -nodeProfilePath #{node[:was][:install_home]}/profiles/#{node[:was][:appsrv_profilename]} -profileName #{node[:was][:dmgr_profile_name]} -cellName #{node[:was][:cell_name]} -nodeName #{node[:was][:dmgr_node_name]} -appServerNodeName #{node[:was][:node_name]}"
-  #command "#{node[:was][:install_home]}/bin/manageprofiles.sh -create -templatePath #{node[:was][:install_home]}/profileTemplates/cell/dmgr -nodeProfilePath #{node[:was][:install_home]}/profiles/#{node[:was][:appsrv_profilename]} -profileName #{node[:was][:profile_name]} -cellName #{node[:was][:cell_name]} -nodeName #{node[:was][:dmgr_node_name]} -appServerNodeName #{node[:was][:node_name]}"
+execute 'Create Deployment Manager profile' do
+  command "#{node[:was][:install_home]}/bin/manageprofiles.sh -create -profileName #{ node[:was][:dmgr_profile_name] } -startingPort #{ node[:was][:dmgr_starting_port]} -adminUserName #{ node[:was][:was_user] } -adminPassword '#{ node[:was][:was_pass] }' -cellName #{ node[:was][:cell_name] } -enableAdminSecurity true -nodeName #{ node[:was][:dmgr_node_name] } -templatePath dmgr -serverName #{ node[:was][:dmgr_server_name] }"
   user node[:was][:run_user]
-  not_if { ::File.exist?( "#{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}" ) }
+  not_if { ::File.exist?( "#{node[:was][:install_home]}/profiles/#{node['was']['dmgr_profile_name'] }" ) }
 end
 
-# execute 'create Application Server profile' do
-#   command "#{node[:was][:install_home]}/bin/manageprofiles.sh -create -templatePath #{node[:was][:install_home]}/profileTemplates/cell/default -dmgrProfilePath #{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]} -portsFile #{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}/properties/portdef.props -nodePortsFile #{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}/properties/nodeportdef.props -profileName #{node[:was][:appsrv_profilename]} -cellName #{node[:was][:cell_name]} -nodeName #{node[:was][:dmgr_node_name]} -appServerNodeName #{node[:was][:appsrv_node_name]}"
-#   user node[:was][:run_user]
-#   not_if { ::File.exist?( "#{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}" ) }
-# end
-
-# Create Cluster
-# Add member to cluster
-
-
-# Start servers
-execute 'Start Dmgr' do
-  command "#{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}/bin/startManager.sh"
+execute 'Start Deployment Manager' do
+  command "#{node[:was][:install_home]}/profiles/#{node[:was][:dmgr_profile_name]}/bin/startManager.sh"
   user node[:was][:run_user]
   # TODO: Add guard here to avoid error with started running services
-  not_if "#{node[:was][:install_home]}/profiles/#{node[:was][:profile_name]}/bin/serverStatus.sh dmgr|grep STARTED"
+  not_if "#{node[:was][:install_home]}/profiles/#{node[:was][:dmgr_profile_name]}/bin/serverStatus.sh dmgr -username #{ node[:was][:was_user] } -password '#{ node[:was][:was_pass] }'|grep STARTED"
 end
 
-# Start servers
-# execute 'Start AppServer' do
-#   command "#{node[:was][:install_home]}/profiles/#{node[:was][:appsrv_profilename]}/bin/startNode.sh"
-#   user node[:was][:run_user]
-#   # TODO: Add guard here to avoid error with started running services
-#   not_if "#{node[:was][:install_home]}/profiles/#{node[:was][:appsrv_profilename]}/bin/serverStatus.sh nodeagent| grep STARTED"
-# end
+node[:was][:nodes].each do |cur_node|
+
+  execute "Create #{cur_node[:profile_name]} Profile" do
+    command "#{node[:was][:install_home]}/bin/manageprofiles.sh -create -profileName #{cur_node[:profile_name]} -templatePath managed -nodeName #{cur_node[:node_name]}"
+    user node[:was][:run_user]
+    not_if { ::File.exist?( "#{node[:was][:install_home]}/profiles/#{cur_node[:profile_name]}" ) }
+  end
+
+  execute "Federate #{cur_node[:profile_name]}" do
+    command "#{node[:was][:install_home]}/bin/addNode.sh #{ node[:was][:dmgr_host]} #{ node[:was][:dmgr_soap_port]} -profileName #{cur_node[:profile_name]} -startingport #{cur_node[:starting_port]} -username #{ node[:was][:was_user] } -password '#{ node[:was][:was_pass] }' "
+    user node[:was][:run_user]
+    not_if { ::File.exist?( "#{node[:was][:install_home]}/profiles/#{ node[:was][:dmgr_profile_name]}/config/cells/#{ node[:was][:cell_name]}/nodes/#{cur_node[:node_name]}" ) }
+    # TODO: Convert to a better test in the future
+    #   export profile_name=Node1
+    #  ./wsadmin.sh -profileName $profile_name -username wasadmin -password 'adminwas' -c 'set servers [$AdminConfig list Server]; foreach s $servers { if { [$AdminConfig showAttribute $s serverType]=="NODE_AGENT" } { puts $s; puts NODE_AGENT }  }'
+    # end
+  end
+
+end # end nodes loop
