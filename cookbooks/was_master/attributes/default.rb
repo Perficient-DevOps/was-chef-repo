@@ -5,6 +5,7 @@
 default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
 default['was']['dmgr_profile_name'] = 'Dmgr01'
 default['was']['dmgr_node_name'] = 'DmgrNode'
+default['was']['dmgr_server_name'] = 'dmgr'
 default['was']['soap_port']     = '10003'
 default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
@@ -26,7 +27,7 @@ default['was']['run_user_passwd'] = '$ecret!'
 
 #cluster operations
 #cluster names for specific cluster operations
-default['was']['create_cluster_name'] = 'TestCluster2'
+default['was']['create_cluster_name'] = 'TestCluster3'
 default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
 default['was']['cluster_first_member_name'] = 'ClusterServerEin'
 default['was']['cluster_subsequent_node_name'] = 'STLSCVMG95218Node02'

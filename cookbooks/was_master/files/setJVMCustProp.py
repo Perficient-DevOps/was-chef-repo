@@ -9,7 +9,8 @@
 #		2) Server name
 #		3) property name
 #               4) property value
-#		5) Debug "YES" or "NO" for printing debug statements for script 
+#		5) description value
+#		6) Debug "YES" or "NO" for printing debug statements for script 
 #
 # Return Codes:
 #		0 = Completed without errors
@@ -21,7 +22,7 @@
 #
 # Invocation Example:
 #		./wsadmin.sh -conntype SOAP -host STLSCVMG95219 -port 10003 -lang jython -user wasadmin -password adminwas 
-#                \ -f /WorkingData/jythonScripts/setJVMCustProp.py "STLSCVMG95219Node01" "bruce" "bruce" "Ryba" "YES"
+#                \ -f /WorkingData/jythonScripts/setJVMCustProp.py "STLSCVMG95219Node01" "bruce" "bruce" "Ryba" "desc" "YES"
 #
 # Author:
 #	Bruce Ryba
@@ -36,11 +37,11 @@ print 'instide test script '
 
 # main logic
 if __name__ == '__main__':
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 6:
     	print 'need node name, server name, custom name, custom value and debug'
         sys.exit(1)
         
-debug=sys.argv[4]
+debug=sys.argv[5]
 print "before check for debug"
 if debug == "YES":
 	print "args is :"
@@ -63,23 +64,59 @@ if debug == "YES":
 	print server_id
 #endIf
 
-# Find JVM
+# get the JVM Id
 if debug == "YES":
 	print "before the javavirtualmachine serverid get"
 #endIf
-jvm_id = AdminConfig.list('JavaVirtualMachine', server_id )
+try:
+	#get the server id
+	jvm_id = AdminConfig.list('JavaVirtualMachine', server_id )
+#EndIf
+except:
+	if debug == "YES":
+		print "Problem with getting JVM ID."
+		sys.exit(1)
+#EndExcept
 
 # Create and initialize variables used for custom property attributes
 
 valid=["validationExpression", ""]
 nname=["name",sys.argv[2]]
 vvalue=["value",sys.argv[3]]
-descrip=["description","description"]
+descrip=["description",sys.argv[4]]
 requiredd=["required","false"]
 custAt=[valid,nname,descrip,vvalue,requiredd]
 
-# Add new properties
-AdminConfig.create('Property', jvm_id, custAt)
+# now lets create the custom property for the JVM
+try:
+	# Add new properties
+	if debug == "YES":
+		print "Before the AdminConfig.create of the custom property."
+	#EndIf
+	AdminConfig.create('Property', jvm_id, custAt)
+	if debug == "YES":
+		print "After the call to AdminConfig.create for custom property."
+	#EndIf
+except:
+	if debug == "YES":
+		print"Error with creating the custom property."
+	#EndIf
+	sys.exit(1)
 
-AdminConfig.save()
+#now save the configuration
+try:
+	# Save the configuration
+	AdminConfig.save()
+	
+	if debug == "YES":
+		print "Created custom property successfully."
+	#endIF
+#EndTry
+except:
+	#Error with the save process, back out changes
+	AdminConfig.reset()
+	print "Failed to save the new custom property.  Backing out changes."
+	sys.exit(1)
+#EndExcept
+
 sys.exit(0)
