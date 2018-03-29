@@ -19,7 +19,7 @@ default['was']['was_pass']      = 'adminwas'
 # default['was']['profile_name']  = 'Dev9Node1'
 # default['was']['node_name']     = 'STLSCVMG95219Node03'
 
-#Run user and run gtoup to create temporary wasadmin scripts on the file system
+#Run user and run group to create temporary wasadmin scripts on the file system
 default['was']['run_user']      = 'wasadmin'
 default['was']['run_group']     = 'wasadmin'
 default['was']['run_user_passwd'] = '$ecret!'
