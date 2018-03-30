@@ -87,9 +87,9 @@ suites:
     run_list:
      - recipe[was_master::prerequisites]
      - recipe[was_master::test_create_base_environment]
-     - recipe[was_master::create_was_cluster0]
-     - recipe[was_master::create_first_was_cluster_member0]
-     - recipe[was_master::create_additional_was_cluster_member0]
+     - recipe[was_master::create_was_cluster]
+     - recipe[was_master::create_first_was_cluster_member]
+     - recipe[was_master::create_additional_was_cluster_member]
     verifier:
       inspec_tests:
         - test/smoke/default
