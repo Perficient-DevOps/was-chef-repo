@@ -121,3 +121,42 @@ suites:
 
         node_name: Node1
         server_name: server1
+
+  - name: create_jdbc
+    run_list:
+     - recipe[was_master::prerequisites]
+     - recipe[was_master::test_create_base_environment]
+     - recipe[was_master::create_was_cluster]
+     - recipe[was_master::create_jdbc_provider]
+     - recipe[was_master::create_jdbc_datasource_oracle]
+     - recipe[was_master::create_jaas_alias]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+
+    attributes:
+      was:
+        dmgr_host: localhost
+        #dmgr_host: default-centos-74-was855-chef13
+        dmgr_profile_name: Dmgr01
+        dmgr_node_name: DmgrNode
+        dmgr_server_name: dmgr
+        dmgr_starting_port: 14000
+        dmgr_soap_port: 14003
+        cell_name: Defaul01Cell
+        cluster_or_server_name: TestCluster3
+        nodes:
+          - profile_name: Node1
+            node_name: Node1
+            starting_port: 14050
+          - profile_name: Node2
+            node_name: Node2
+            starting_port: 14150
+        java_option_first: -Xms128m
+        java_option_second: -Xmx256m
+        log_size: 99
+        max_logs_to_keep: 99
+
+
+        node_name: Node1
+        server_name: server1
