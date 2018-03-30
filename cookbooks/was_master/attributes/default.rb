@@ -6,6 +6,8 @@ default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
 default['was']['dmgr_profile_name'] = 'Dmgr01'
 default['was']['dmgr_node_name'] = 'DmgrNode'
 default['was']['dmgr_server_name'] = 'dmgr'
+default['was']['dmgr_starting_port'] = 14000
+default['was']['dmgr_soap_port'] = 14003
 default['was']['soap_port']     = '10003'
 default['was']['profile_name']  = 'DevDmgr'
 default['was']['node_name']     = 'STLSCVMG95218Node02'
@@ -150,4 +152,35 @@ default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024' ]
 
 default[:was][:jython_scripts] = [
   'setJVMLogSize.py',
+  'crtClusterMember.py',
+  'crtClusterMemberFirst.py',
+  'crtJAASAlias.py',
+  'crtJDBCDataSourceOracle.py',
+  'crtJDBCProvider.py',
+  'crtNameSpaceBinding.py',
+  'crtSharedLib.py',
+  'crtUnManagedNode.py',
+  'crtCluster.py',
+  'crtWebServer.py',
+  'dltJDBCDataSource.py',
+  'dltJDBCProvider.py',
+  'dltCluster.py',
+  'existsCluster.py',
+  'regenWebServerPlugin.py',
+  'restartTestJDBCCluster.py',
+  'restartTestJDBCServer.py',
+  'setJVMGenArgs.py',
+  'setDataSourceConnectionPool.py',
+  'setJVMCustProp.py',
+  'wrkJVMGenArgs.py',
+  'setJVMHeap.py',
+  'setServerJDK.py',
+  'chgServerPorts.py',
+  'setVirtualHost.py',
+  'startCluster.py',
+  'startAppServer.py',
+  'stopCluster.py',
+  'stopAppServer.py',
+  'syncNodeAllActive.py',
+  'syncNode.py',
 ]
