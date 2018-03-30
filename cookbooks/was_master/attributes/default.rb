@@ -43,7 +43,7 @@ default['was']['cluster'] = 'DevCluster'
 default['was']['host']          = 'STLSCVMG95219'#DMgr Hostname for SOAP Commands
 
 # This path need not change per environment, it should remain the same
-default['was']['jython_path']   = "#{ Chef::Config[:file_cache_path] }/jythonScripts"
+default['was']['jython_path']   = File.join( Chef::Config[:file_cache_path], 'jythonScripts' )
 #Profile path is used by the generic create server recipe
 default['was']['profile_path']  = File.join( node['was']['install_home'], 'profiles', node['was']['profile_name'] )
 
@@ -146,3 +146,8 @@ default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
 default['was']['java_option_first'] = '-Xms512m'
 default['was']['java_option_second'] = '-Xmx1024m'
 default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024' ]
+
+
+default[:was][:jython_scripts] = [
+  'setJVMLogSize.py',
+]
