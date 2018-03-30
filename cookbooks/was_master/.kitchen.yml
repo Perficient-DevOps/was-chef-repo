@@ -24,18 +24,27 @@ suites:
   - name: default
     run_list:
      - recipe[was_master::prerequisites]
-     - recipe[was_master::create_profiles]
-     - recipe[was_master::set_jvm_log_size]
+     - recipe[was_master::test_create_base_environment]
+     #- recipe[was_master::set_jvm_log_size]
     verifier:
       inspec_tests:
         - test/smoke/default
     attributes:
       was:
-        host: default-centos-74-was855-chef13.vagrantup.com
-        profile_name: Dmgr01
-        soap_port: 8879
+        dmgr_host: default-centos-74-was855-chef13
+        dmgr_profile_name: Dmgr01
+        dmgr_node_name:
+        dmgr_server_name: dmgr
+        dmgr_starting_port: 14000
+        dmgr_soap_port: 14003
+        nodes:
+          - profile_name: Node1
+            node_name: Node1
+            starting_port: 14050
+          - profile_name: Node2
+            node_name: Node2
+            starting_port: 14150
+
         cell_name: Defaul01Cell
-        node_name: Default02Node
-        server_name: dmgr
         java_option_first: -Xms128m
         java_option_second: -Xmx256m
