@@ -1,0 +1,11 @@
+#!/bin/sh
+# https://www.ibm.com/support/knowledgecenter/en/SS9JLE_8.2.0/com.ibm.itamesso.doc/tasks/creating_wasnd_profiles_cmdline.html
+
+<%= @was_home %>/bin/manageprofiles.sh -create \
+  -profileName <%= @profile_name %> \
+<% if ! @profile_path.empty? -%>
+  -profilePath <%= @profile_path %> \
+<% end -%>
+<% if ! @profile_template_path.empty? -%>
+  -templatePath <%= @profile_template_path %>
+<% end -%>
