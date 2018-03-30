@@ -87,9 +87,9 @@ suites:
     run_list:
      - recipe[was_master::prerequisites]
      - recipe[was_master::test_create_base_environment]
-     - recipe[was_master::create_was_cluster]
-     - recipe[was_master::create_first_was_cluster_member]
-     - recipe[was_master::create_additional_was_cluster_member]
+     - recipe[was_master::create_was_cluster0]
+     - recipe[was_master::create_first_was_cluster_member0]
+     - recipe[was_master::create_additional_was_cluster_member0]
     verifier:
       inspec_tests:
         - test/smoke/default
@@ -104,6 +104,8 @@ suites:
         dmgr_starting_port: 14000
         dmgr_soap_port: 14003
         cell_name: Defaul01Cell
+        cluster_first_node_name: Node1
+        cluster_subsequent_node_name: Node2
         nodes:
           - profile_name: Node1
             node_name: Node1
