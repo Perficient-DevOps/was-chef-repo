@@ -14,7 +14,10 @@ action :create do
   # base command
   wsadmin_cmd  = ::File.join( node['was']['install_home'], 'bin', 'wsadmin.sh')
   # wsadmin options
-  wsadmin_cmd += " -javaoption '#{node['was']['java_option_first']}' -javaoption '#{node['was']['java_option_second']}'"
+  node[:was][:java_options].each do |cur_opt|
+    wsadmin_cmd += " -javaoption '#{cur_opt}'"
+  end
+
   # connection information
   wsadmin_cmd += " -conntype #{conntype} -host #{ node['was']['dmgr_host'] } -port #{ node['was']['dmgr_soap_port'] }"
   wsadmin_cmd += node[:was][:was_user] ? " -user #{node['was']['was_user']} -password '#{node['was']['was_pass']}'" : ""

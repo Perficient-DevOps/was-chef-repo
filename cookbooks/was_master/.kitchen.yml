@@ -17,11 +17,15 @@ platforms:
     driver:
       box: centos-74-was855-chef13
       box_url: https://s3.us-east-2.amazonaws.com/devops-perficient-images/boxes/centos-74-was855-chef13.box
+      cachier: true
       customize:
-        memory: 4096
+        memory: 2048
 
 suites:
   - name: test_create_base_environment
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 9080, host: 10080}]
     run_list:
      - recipe[was_master::prerequisites]
      - recipe[was_master::test_create_base_environment]
@@ -30,22 +34,11 @@ suites:
         - test/smoke/default
     attributes:
       was:
+        java_options: []
         # FIXME: the actual hostname is not resolving for some reason
         #dmgr_host: default-centos-74-was855-chef13
         dmgr_host: localhost
-        dmgr_profile_name: Dmgr01
-        dmgr_node_name: DmgrNode
-        dmgr_server_name: dmgr
-        dmgr_starting_port: 14000
-        dmgr_soap_port: 14003
         cell_name: Defaul01Cell
-        nodes:
-          - profile_name: Node1
-            node_name: Node1
-            starting_port: 14050
-          - profile_name: Node2
-            node_name: Node2
-            starting_port: 14150
 
   - name: jvm_tuning
     run_list:
@@ -56,30 +49,14 @@ suites:
     verifier:
       inspec_tests:
         - test/smoke/default
-
     attributes:
       was:
+        java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        dmgr_profile_name: Dmgr01
-        dmgr_node_name: DmgrNode
-        dmgr_server_name: dmgr
-        dmgr_starting_port: 14000
-        dmgr_soap_port: 14003
         cell_name: Defaul01Cell
-        nodes:
-          - profile_name: Node1
-            node_name: Node1
-            starting_port: 14050
-          - profile_name: Node2
-            node_name: Node2
-            starting_port: 14150
-        java_option_first: -Xms128m
-        java_option_second: -Xmx256m
         log_size: 99
         max_logs_to_keep: 99
-
-
         node_name: Node1
         server_name: server1
 
@@ -93,32 +70,14 @@ suites:
     verifier:
       inspec_tests:
         - test/smoke/default
-
     attributes:
       was:
+        java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        dmgr_profile_name: Dmgr01
-        dmgr_node_name: DmgrNode
-        dmgr_server_name: dmgr
-        dmgr_starting_port: 14000
-        dmgr_soap_port: 14003
         cell_name: Defaul01Cell
         cluster_first_node_name: Node1
         cluster_subsequent_node_name: Node2
-        nodes:
-          - profile_name: Node1
-            node_name: Node1
-            starting_port: 14050
-          - profile_name: Node2
-            node_name: Node2
-            starting_port: 14150
-        java_option_first: -Xms128m
-        java_option_second: -Xmx256m
-        log_size: 99
-        max_logs_to_keep: 99
-
-
         node_name: Node1
         server_name: server1
 
@@ -133,30 +92,12 @@ suites:
     verifier:
       inspec_tests:
         - test/smoke/default
-
     attributes:
       was:
+        java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        dmgr_profile_name: Dmgr01
-        dmgr_node_name: DmgrNode
-        dmgr_server_name: dmgr
-        dmgr_starting_port: 14000
-        dmgr_soap_port: 14003
         cell_name: Defaul01Cell
         cluster_or_server_name: TestCluster3
-        nodes:
-          - profile_name: Node1
-            node_name: Node1
-            starting_port: 14050
-          - profile_name: Node2
-            node_name: Node2
-            starting_port: 14150
-        java_option_first: -Xms128m
-        java_option_second: -Xmx256m
-        log_size: 99
-        max_logs_to_keep: 99
-
-
         node_name: Node1
         server_name: server1

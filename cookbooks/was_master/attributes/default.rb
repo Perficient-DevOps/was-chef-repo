@@ -14,6 +14,11 @@ default['was']['node_name']     = 'STLSCVMG95218Node02'
 default['was']['was_user']      = 'wasadmin'
 default['was']['was_pass']      = 'adminwas'
 
+default['was']['nodes']           = [
+  { 'profile_name' => 'Node1', 'node_name' => 'Node1', 'starting_port' => '14050' },
+  { 'profile_name' => 'Node2', 'node_name' => 'Node2', 'starting_port' => '14150' },
+]
+
 #was9 values
 # default['was']['install_home']  = '/opt/IBM/WAS9/WebSphere/Appserver/'
 # default['was']['dmgr_profile_name'] = 'Dev9Dev'
@@ -147,7 +152,7 @@ default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
 #wasadmin JVM Size for all recipes using wasadmin
 default['was']['java_option_first'] = '-Xms512m'
 default['was']['java_option_second'] = '-Xmx1024m'
-default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024' ]
+default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024m' ]
 
 
 default[:was][:jython_scripts] = [
