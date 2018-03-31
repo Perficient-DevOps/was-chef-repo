@@ -1,18 +1,34 @@
 #These values are test values and only appy to the Perficient internal environment
 #All of these values should be overridden by the JSON passed into UCD
 
-#was855 base values used across multiple recipes
-default['was']['install_home']  = '/opt/IBM/WebSphere/AppServer/'
+# was855 base values used across multiple recipes
+default['was']['install_home']      = '/opt/IBM/WebSphere/AppServer/'
+# Run user and run group to create temporary wasadmin scripts on the file system
+default['was']['run_user']          = 'wasadmin'
+default['was']['run_group']         = 'wasadmin'
+default['was']['run_user_passwd']   = '$ecret!'
+
+# wsadmin settings
+default['was']['wsadmin']['debug']  = 'Yes'
+default['was']['java_option_first'] = '-Xms512m' # deprecated
+default['was']['java_option_second'] = '-Xmx1024m' # deprecated
+default['was']['java_options']      = [ '-Xmx512m', '-Xmx1024m' ]
+
+## WebSphere component configuration data
+
+# default credentials
+default['was']['was_user']          = 'wasadmin'
+default['was']['was_pass']          = 'adminwas'
+
 default['was']['dmgr_profile_name'] = 'Dmgr01'
-default['was']['dmgr_node_name'] = 'DmgrNode'
-default['was']['dmgr_server_name'] = 'dmgr'
+default['was']['dmgr_node_name']    = 'DmgrNode'
+default['was']['dmgr_server_name']  = 'dmgr'
 default['was']['dmgr_starting_port'] = 14000
-default['was']['dmgr_soap_port'] = 14003
-default['was']['soap_port']     = '10003'
-default['was']['profile_name']  = 'DevDmgr'
-default['was']['node_name']     = 'STLSCVMG95218Node02'
-default['was']['was_user']      = 'wasadmin'
-default['was']['was_pass']      = 'adminwas'
+default['was']['dmgr_soap_port']    = 14003
+default['was']['soap_port']         = '10003'
+default['was']['profile_name']      = 'DevDmgr'
+default['was']['node_name']         = 'STLSCVMG95218Node02'
+
 
 default['was']['nodes']           = [
   { 'profile_name' => 'Node1', 'node_name' => 'Node1', 'starting_port' => '14050' },
@@ -26,11 +42,6 @@ default['was']['nodes']           = [
 # default['was']['soap_port']     = '13003'
 # default['was']['profile_name']  = 'Dev9Node1'
 # default['was']['node_name']     = 'STLSCVMG95219Node03'
-
-#Run user and run group to create temporary wasadmin scripts on the file system
-default['was']['run_user']      = 'wasadmin'
-default['was']['run_group']     = 'wasadmin'
-default['was']['run_user_passwd'] = '$ecret!'
 
 #cluster operations
 #cluster names for specific cluster operations
@@ -148,12 +159,6 @@ default['was']['string_value'] = 'false'
 
 #backup_config
 default['was']['backup_path'] = '/WorkingData/backupConfig/DevDmgr'
-
-#wasadmin JVM Size for all recipes using wasadmin
-default['was']['java_option_first'] = '-Xms512m'
-default['was']['java_option_second'] = '-Xmx1024m'
-default['was']['java_options']       = [ '-Xmx512m', '-Xmx1024m' ]
-
 
 default[:was][:jython_scripts] = [
   'setJVMLogSize.py',

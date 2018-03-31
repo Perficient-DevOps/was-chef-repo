@@ -2,14 +2,14 @@
 
 resource_name :server
 
-property :name, String, default: 'default'
+property :server_name, String, default: 'default'
 
 action :create do
 
 end
 
 action :delete do
-  
+
 end
 
 action :start do

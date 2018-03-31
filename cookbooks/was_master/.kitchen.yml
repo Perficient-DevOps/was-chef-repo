@@ -38,7 +38,7 @@ suites:
         # FIXME: the actual hostname is not resolving for some reason
         #dmgr_host: default-centos-74-was855-chef13
         dmgr_host: localhost
-        cell_name: Defaul01Cell
+        cell_name: Default01Cell
 
   - name: jvm_tuning
     run_list:
@@ -54,7 +54,7 @@ suites:
         java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Defaul01Cell
+        cell_name: Default01Cell
         log_size: 99
         max_logs_to_keep: 99
         node_name: Node1
@@ -75,7 +75,7 @@ suites:
         java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Defaul01Cell
+        cell_name: Default01Cell
         cluster_first_node_name: Node1
         cluster_subsequent_node_name: Node2
         node_name: Node1
@@ -97,7 +97,7 @@ suites:
         java_options: []
         dmgr_host: localhost
         #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Defaul01Cell
+        cell_name: Default01Cell
         cluster_or_server_name: TestCluster3
         node_name: Node1
         server_name: server1
