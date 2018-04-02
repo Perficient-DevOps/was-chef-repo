@@ -29,6 +29,3 @@ end
 execute "Update #{node[:was][:install_home]} directory ownership" do
   command "chown -R #{node[:was][:run_user]}:#{node[:was][:run_group]} #{node[:was][:install_home]}"
 end
-
-# Setup for jython scripting
-include_recipe 'was_master::install_jython_scripts'
