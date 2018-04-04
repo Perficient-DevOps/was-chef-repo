@@ -17,87 +17,25 @@ platforms:
     driver:
       box: centos-74-was855-chef13
       box_url: https://s3.us-east-2.amazonaws.com/devops-perficient-images/boxes/centos-74-was855-chef13.box
-      cachier: true
       customize:
-        memory: 2048
+        memory: 4096
 
 suites:
-  - name: test_create_base_environment
-    driver_config:
-      network:
-        - ["forwarded_port", {guest: 9080, host: 10080}]
+  - name: default
     run_list:
      - recipe[was_master::prerequisites]
-     - recipe[was_master::test_create_base_environment]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
-      was:
-        java_options: []
-        # FIXME: the actual hostname is not resolving for some reason
-        #dmgr_host: default-centos-74-was855-chef13
-        dmgr_host: localhost
-        cell_name: Default01Cell
-
-  - name: jvm_tuning
-    run_list:
-     - recipe[was_master::prerequisites]
-     - recipe[was_master::test_create_base_environment]
-     - recipe[was_master::create_was_server]
+     - recipe[was_master::create_profiles]
      - recipe[was_master::set_jvm_log_size]
     verifier:
       inspec_tests:
         - test/smoke/default
     attributes:
       was:
-        java_options: []
-        dmgr_host: localhost
-        #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Default01Cell
-        log_size: 99
-        max_logs_to_keep: 99
-        node_name: Node1
-        server_name: server1
-
-  - name: create_cluster
-    run_list:
-     - recipe[was_master::prerequisites]
-     - recipe[was_master::test_create_base_environment]
-     - recipe[was_master::create_was_cluster]
-     - recipe[was_master::create_first_was_cluster_member]
-     - recipe[was_master::create_additional_was_cluster_member]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
-      was:
-        java_options: []
-        dmgr_host: localhost
-        #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Default01Cell
-        cluster_first_node_name: Node1
-        cluster_subsequent_node_name: Node2
-        node_name: Node1
-        server_name: server1
-
-  - name: create_jdbc
-    run_list:
-     - recipe[was_master::prerequisites]
-     - recipe[was_master::test_create_base_environment]
-     - recipe[was_master::create_was_cluster]
-     - recipe[was_master::create_jdbc_provider]
-     - recipe[was_master::create_jdbc_datasource_oracle]
-     - recipe[was_master::create_jaas_alias]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
-      was:
-        java_options: []
-        dmgr_host: localhost
-        #dmgr_host: default-centos-74-was855-chef13
-        cell_name: Default01Cell
-        cluster_or_server_name: TestCluster3
-        node_name: Node1
-        server_name: server1
+        host: default-centos-74-was855-chef13.vagrantup.com
+        profile_name: Dmgr01
+        soap_port: 8879
+        cell_name: Defaul01Cell
+        node_name: Default02Node
+        server_name: dmgr
+        java_option_first: -Xms128m
+        java_option_second: -Xmx256m

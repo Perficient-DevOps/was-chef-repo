@@ -45,7 +45,6 @@ default['was']['nodes']           = [
 
 #cluster operations
 #cluster names for specific cluster operations
-default['was']['cluster_name'] = 'DevCluster'
 default['was']['create_cluster_name'] = 'TestCluster3'
 default['was']['cluster_first_node_name'] = 'STLSCVMG95219Node01'
 default['was']['cluster_first_member_name'] = 'ClusterServerEin'

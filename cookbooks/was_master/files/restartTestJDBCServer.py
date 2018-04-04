@@ -49,7 +49,7 @@ else:
 		#endIF
 	#endTry
 	except:
-		print "		Exception with AdminClusterManagement.stopSingleServer call.  Cluster not stopped."
+		print "		Exception with AdminClusterManagement.stopSingleCluster call.  Cluster not stopped."
 		sys.exit(1)
 	#endExcept	
 
@@ -116,7 +116,7 @@ for dsItem in dsList:
 	if dsMember_name == dataSourceName:
 		if debug == "YES":
 			print "We have a match on the datasource name."
-			print "Before the test connection on the server scoped datasource ",dsMember_name
+			print "Before the test connection on the cluster scoped datasource ",dsMember_name
 		#EndIf 
 		
 		#Build out containment path for the datasource so we can get the id for it

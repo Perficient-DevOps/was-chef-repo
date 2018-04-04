@@ -1,3 +1,4 @@
 # was_master
 
-Helper cookbook for working with WebSphere.
+TODO: Enter the cookbook description here.
+
