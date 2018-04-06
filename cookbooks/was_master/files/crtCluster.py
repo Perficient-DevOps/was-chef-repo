@@ -26,16 +26,17 @@ if debug == "YES":
 	
 try:
 	if debug == "YES":
-		print "before AdminTask.createCluster call."
+		print "before AdminClusterManagement.createClusterWithoutMember call."
 	#endIF
 	# Call AdminTask to create the cluster.
-	AdminTask.createCluster(["-clusterConfig",[clusterConfigOptions]])
+	#AdminTask.createCluster(["-clusterConfig",[clusterConfigOptions]])
+	AdminClusterManagement.createClusterWithoutMember(clusterName)
 	if debug == "YES":
-		print "After the AdminTask.createCluster call and OK."
+		print "After call to AdminClusterManagement.createClusterWithoutMember call and OK."
 	#EndIf
 #endTry
 except:
-	print "Exception with AdminTask.createCluster call. Do not save configuration."
+	print "Exception with AdminClusterManagement.createClusterWithoutMember call. Do not save configuration."
 	sys.exit(1)
 #endExcept	
 
