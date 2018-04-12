@@ -42,14 +42,14 @@ else:
 		if debug == "YES":
 			print "		Before AdminClusterManagement.stopSingleServer call."
 		#endIF
-		# Call AdminClusterManagement.stopSingleCluster to start the cluster.
+		# Call AdminClusterManagement.stopSingleCluster to start the server.
 		AdminServerManagement.stopSingleServer(nodeNameV,serverName)
 		if debug == "YES":
-			print "		After AdminClusterManagement.stopSingleServer call -successful. "
+			print "		After AdminServerManagement.stopSingleServer call -successful. "
 		#endIF
 	#endTry
 	except:
-		print "		Exception with AdminClusterManagement.stopSingleServer call.  Cluster not stopped."
+		print "		Exception with AdminServerManagement.stopSingleServer call.  Server not stopped."
 		sys.exit(1)
 	#endExcept	
 
@@ -165,6 +165,6 @@ else:
 	#EndIf
 	
 if debug == "YES":
-		print "Done with server restart and testing of datasource. Please review test info."
+		print "Done with server restart and testing of datasource. Please review test info in logs."
 	#endIF
 sys.exit(0)
